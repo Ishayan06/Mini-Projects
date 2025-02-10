@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: black;
+            padding: 0;
+            margin: 0;
+            align-items: center;
+        }
+        h1{
+            color: white;
+            text-align: center;
+        }
+        #container{
+            border: 2px solid white;
+            height: 426px;
+            width: 470px;
+            margin: auto;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .box{
+            background-color: white;
+            width:150px;
+            height:135px;
+            text-align: center;
+            font-size: 100px;
+            cursor: pointer;
+        }
+        #reset{
+            text-align:center;
+            /* margin-top: 30px; */
+            /* margin-left: 580px; */
+            padding: 5px 10px;
+            height: 30px;
+            width: 80px;
+        }
+        #ans{
+            color:black;
+            font-size: larger;
+            height: 30px;
+            width: 90px;
+            background-color: white;
+            text-align: center;
+        }
+        .hello{
+            display: flex;
+            padding: 5px;
+            margin-top: 30px;
+            gap: 20px;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tic-Tac-Toe</h1>
+    <div id="container">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </div>
+    <div class="hello">
+        <button onclick="reset()" id="reset">RESET</button>
+        <div id="ans"></div>
+        
+    </div>
+    <script>
+        let boxes=document.querySelectorAll(".box");
+        let turn=true;
+        let pattern=[
+            [0,1,2],
+            [3,4,5],
+            [6,7,8],
+            [0,3,6],
+            [1,4,7],
+            [2,5,8],
+            [0,4,8],
+            [2,4,6]
+        ];
+        boxes.forEach(box =>{
+            box.addEventListener("click",()=>{
+                if(!box.innerText){
+                    if(turn){
+                        box.innerText="O";
+                        turn=false;
+                    }
+                    else{
+                        box.innerText="X";
+                        turn=true;
+                    }
+                box.classList.add('disabled');
+                }
+                checkwinner();
+            });
+        });
+        function checkwinner(){
+            pattern.forEach(element => {
+                let part1=boxes[element[0]].innerText
+                let part2=boxes[element[1]].innerText
+                let part3=boxes[element[2]].innerText
+                if(part1==part2 && part2==part3){
+                    if(part1=="X"&& part2=="X" && part3=="X"){
+                        document.getElementById("ans").innerText="winner-X"
+                        console.log("winner-x")
+                        }
+                        else{
+                            document.getElementById("ans").innerText="winner-O"
+                            console.log("winner-o")
+
+                    }
+                }
+            });
+        }
+        function reset(){
+            boxes.forEach(box=>{
+                box.innerText=""
+
+            })
+            document.getElementById("ans").innerText=""
+        }
+
+    </script>
+    
+</body>
+</html>

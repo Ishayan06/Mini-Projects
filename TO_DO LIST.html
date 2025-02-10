@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin-top: 15%;
+            height: 68vh;
+            width: 95vw;
+            background: linear-gradient(to right bottom, rgb(4, 82, 4), rgb(226, 208, 208));
+        }
+
+
+        .container {
+            width: 25vw;
+            height: 45vh;
+            margin: auto;
+            border: 2px solid;
+            padding-top: 20px;
+            padding-left: 70px;
+            box-shadow: 10px 10px 5px rgba(0, 0, 0, .5);
+            font-size: large;
+            background-color: white;
+        }
+
+        .button {
+            cursor: pointer;
+            color: white;
+            border-color: white;
+            padding: 5px 10px;
+            background-color: rgb(22, 234, 22);
+        }
+
+        .button:hover {
+            background-color: #60b160;
+        }
+
+        ul {
+            display: flex;
+            flex-direction: column;
+            list-style: none;
+            padding: 0;
+            height: 100px;
+            overflow-y: scroll;
+            
+        }
+
+        li {
+            display: flex;
+            justify-content: space-between;
+            border: 2px solid rgb(124, 123, 123);
+            width: 240px;
+            text-align: center;
+            margin-bottom: 5px;
+            padding: 5px 5px;
+            border-color: rgb(202, 197, 197);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>TO-DO LIST</h1>
+        <input type="text" id="add" placeholder="add new to do list...." style="padding: 5px 10px;">
+        <input class="button" type="button" id="button" value="ADD">
+        <ul class="todo" id="todolist">
+            <!-- <li>task1</li>
+            <li>task2</li>
+            <li>task3</li> -->
+        </ul>
+    </div>
+    <script>
+        let button = document.getElementById("button");
+        let todo = document.getElementById("todolist");
+        let add = document.getElementById("add");
+        button.addEventListener('click', () => {
+            let data = add.value;
+            if (data.length <= 0) {
+                alert("nothing");
+            }
+            else {
+                let li = document.createElement("li");
+                let textNode = document.createTextNode(data);  // Create a text node
+                li.appendChild(textNode);  // Append the text node to the <li> element
+                todo.appendChild(li); 
+                let deletebtn=document.createElement("button");
+                deletebtn.innerText="remove";
+                li.appendChild(deletebtn);
+                 // Append the <li> element to the list
+                add.value = '';
+                deletebtn.addEventListener('click',()=>{
+                todo.removeChild(li);
+        });
+
+            }
+        });
+
+    </script>
+</body>
+
+</html>
+
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+fill="white"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+<path
+    d="M459.5 440.6c9.5 7.9 22.8 9.7 34.1 4.4s18.4-16.6 18.4-29l0-320c0-12.4-7.2-23.7-18.4-29s-24.5-3.6-34.1 4.4L288 214.3l0 41.7 0 41.7L459.5 440.6zM256 352l0-96 0-128 0-32c0-12.4-7.2-23.7-18.4-29s-24.5-3.6-34.1 4.4l-192 160C4.2 237.5 0 246.5 0 256s4.2 18.5 11.5 24.6l192 160c9.5 7.9 22.8 9.7 34.1 4.4s18.4-16.6 18.4-29l0-64z" />
+</svg>
+<svg id="masterplay" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"
+fill="white"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+<path
+    d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80L0 432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z" />
+</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+fill="white"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+<path
+    d="M52.5 440.6c-9.5 7.9-22.8 9.7-34.1 4.4S0 428.4 0 416L0 96C0 83.6 7.2 72.3 18.4 67s24.5-3.6 34.1 4.4L224 214.3l0 41.7 0 41.7L52.5 440.6zM256 352l0-96 0-128 0-32c0-12.4 7.2-23.7 18.4-29s24.5-3.6 34.1 4.4l192 160c7.3 6.1 11.5 15.1 11.5 24.6s-4.2 18.5-11.5 24.6l-192 160c-9.5 7.9-22.8 9.7-34.1 4.4s-18.4-16.6-18.4-29l0-64z" />
+</svg>

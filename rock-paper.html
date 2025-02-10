@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: black;
+        }
+        #point {
+            height: 35vh;
+            border: 2px solid white;
+            display: flex;
+            gap: 100px;
+        }
+        #container {
+            margin-top: 15px;
+            height: 35vh;
+            border: 2px solid white;
+            display: flex;
+        }
+        #choice {
+            height: 35vh;
+            border: 2px solid white;
+            width: 20vw;
+            text-align: center;
+        }
+        #box1 {
+            margin-top: 40px;
+            height: 150px;
+            width: 160px;
+            margin-left: 390px;
+        }
+        #box2 {
+            margin-top: 40px;
+            height: 150px;
+            width: 160px;
+        }
+        .small {
+            color: white;
+            margin-left: 420px;
+        }
+        #reset {
+            margin-top: 10px;
+            margin-left: 550px;
+            padding: 5px 10px;
+        }
+        #player1, #player2 {
+            color: white;
+            height: 30px;
+            font-size: large;
+        }
+        #player1 {
+            padding-left: 45px;
+        }
+        #player2 {
+            padding-left: 30px;
+        }
+        #point1, #point2 {
+            color: white;
+            font-size: 100px;
+            padding-left: 50px;
+        }
+        #first, #second, #third {
+            padding: 2px 5px;
+            margin: 20px 50px;
+        }
+        #player, #com {
+            width: 39vw;
+            border: 2px solid white;
+        }
+        #screen1, #screen2 {
+            width: 100px;
+            height: 100px;
+            border: 2px solid white;
+            margin-left: 180px;
+            margin-top: 30px;
+            color: white;
+            font-size: larger;
+            text-align: center;
+            line-height: 100px;
+        }
+        #green, #red {
+            width: 50px;
+            height: 20px;
+            border: 2px solid white;
+            margin-top: 15px;
+            margin-left: 206px;
+        }
+    </style>
+</head>
+<body>
+    <div class="small">
+        <h1>ROCK-PAPER-SCISSOR</h1>
+    </div>
+    <div id="point">
+        <div id="box1">
+            <div id="player1">PLAYER</div>
+            <div id="point1">0</div>
+        </div>
+        <div id="box2">
+            <div id="player2">COMPUTER</div>
+            <div id="point2">0</div>
+        </div>
+    </div>
+    <div id="container">
+        <div id="choice">
+            <button onclick="playerChoice('Stone')" id="first">STONE</button>
+            <button onclick="playerChoice('Paper')" id="second">PAPER</button>
+            <button onclick="playerChoice('Scissor')" id="third">SCISSOR</button>
+        </div>
+        <div id="player">
+            <div id="screen1"></div>
+            <div id="green"></div>
+        </div>
+        <div id="com">
+            <div id="screen2"></div>
+            <div id="red"></div>
+        </div>
+    </div>
+    <button id="reset" onclick="resetGame()">RESET</button>
+    <script>
+        const choices = {
+            1: "Paper",
+            2: "Scissor",
+            3: "Stone"
+        };
+
+        function playerChoice(choice) {
+            document.getElementById("screen1").innerText = choice;
+            const computerChoice = getRandomChoice();
+            document.getElementById("screen2").innerText = computerChoice;
+            checkResult(choice, computerChoice);
+        }
+
+        function getRandomChoice() {
+            const num = Math.floor(Math.random() * 3) + 1;
+            return choices[num];
+        }
+        let point=0;
+        let cpoint=0;
+
+        function checkResult(playerChoice, computerChoice) {
+            if (playerChoice === computerChoice) {
+                // It's a tie
+                document.getElementById("green").style.backgroundColor = "yellow";
+                document.getElementById("red").style.backgroundColor = "yellow";
+                point=point+0;
+                cpoint=cpoint+0;
+                score(point,cpoint)
+            } else if (
+                (playerChoice === "Stone" && computerChoice === "Scissor") ||
+                (playerChoice === "Paper" && computerChoice === "Stone") ||
+                (playerChoice === "Scissor" && computerChoice === "Paper")
+            ) {
+                // Player wins
+                document.getElementById("green").style.backgroundColor = "green";
+                document.getElementById("red").style.backgroundColor = "red";
+                point=point+1;
+                cpoint=cpoint+0;
+                score(point,cpoint)
+            } else {
+                // Computer wins
+                document.getElementById("green").style.backgroundColor = "red";
+                document.getElementById("red").style.backgroundColor = "green";
+                point=point+0;
+                cpoint=cpoint+1;
+                score(point,cpoint)
+            }
+        }
+        function score(point,cpoint){
+            if(point>=5 ){
+            document.getElementById("point1").innerText="winner"
+            document.getElementById("point2").innerText=cpoint
+            }else if(cpoint>=5 ){
+            document.getElementById("point1").innerText=point
+            document.getElementById("point2").innerText="winner"
+            }
+            else{
+                document.getElementById("point1").innerText=point
+                document.getElementById("point2").innerText=cpoint    
+            }
+            
+
+        }
+
+        function resetGame() {
+            document.getElementById("screen1").innerText = "";
+            document.getElementById("screen2").innerText = "";
+            document.getElementById("green").style.backgroundColor = "";
+            document.getElementById("red").style.backgroundColor = "";
+            point=0;
+            cpoint=0;
+            document.getElementById("point1").innerText=point
+            document.getElementById("point2").innerText=cpoint
+        }
+    </script>
+</body>
+</html>
